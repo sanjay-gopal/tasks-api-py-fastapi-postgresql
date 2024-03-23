@@ -1,2 +1,6 @@
 fastapi
 sqlalchemy
+passlib
+bcrypt
+multipart
+python-jose[cryptography]
