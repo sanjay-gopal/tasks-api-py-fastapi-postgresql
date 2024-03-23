@@ -4,10 +4,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from typing import Annotated
 from sqlalchemy.orm import Session
 from fastapi import Depends
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./tasksappsql.db"
+SQLALCHEMY_DATABASE_URL = f"postgresql://{os.getenv('USER')}:{os.getenv('PASSWORD')}@{os.getenv('HOST')}/{os.getenv('DATABASE_NAME')}"
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={'check_same_thread': False})
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 
 SessnionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

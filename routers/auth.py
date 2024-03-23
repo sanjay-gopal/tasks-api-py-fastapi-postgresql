@@ -26,7 +26,7 @@ def authenticate_user(username: str, password: str, db):
     user = db.query(Users).filter(Users.username == username).first()
     if not user:
         return False
-    if not bcrypt_context.identify(password, user.hashed_password):
+    if not bcrypt_context.verify(password, user.hashed_password):
         return False
     return user
 
@@ -38,7 +38,6 @@ def generate_access_token(username: str, user_id: int, role: str, expires_delta:
     }
     expires = datetime.utcnow() + expires_delta
     encode.update({'exp': expires})
-    print(f"This is a SECRET KEY:  {SECRET_KEY}")
     token = jwt.encode(encode, SECRET_KEY, algorithm = ALGORITHM)
     return token
 
