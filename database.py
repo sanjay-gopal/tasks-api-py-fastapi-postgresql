@@ -5,7 +5,7 @@ from typing import Annotated
 from sqlalchemy.orm import Session
 from fastapi import Depends
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./tasks.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./tasksappsql.db"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={'check_same_thread': False})
 
