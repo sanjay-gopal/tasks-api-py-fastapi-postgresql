@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-SQLALCHEMY_DATABASE_URL = f"postgresql://{os.getenv('USER')}:{os.getenv('PASSWORD')}@{os.getenv('HOST')}/{os.getenv('DATABASE_NAME')}"
+SQLALCHEMY_DATABASE_URL = f"postgresql://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@{os.getenv('POSTGRES_HOST')}/{os.getenv('POSTGRES_DATABASE_NAME')}"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
