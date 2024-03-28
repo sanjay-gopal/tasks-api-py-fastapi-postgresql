@@ -1,6 +1,10 @@
 fastapi
+uvicorn
+alembic
+python-dotenv
+psycopg2
 sqlalchemy
 passlib
 bcrypt
-multipart
+python-multipart
 python-jose[cryptography]
