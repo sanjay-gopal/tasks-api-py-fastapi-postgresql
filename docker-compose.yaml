@@ -1,0 +1,44 @@
+version: '3'
+
+networks:
+  dem:
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: TaskApplicationDatabase
+    ports:
+      - 5432:5432
+    networks:
+      - dem
+  
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      # PGADMIN_DEFAULT_PASSWORD_FILE: 
+    depends_on:
+      - postgres
+    ports:
+      - 6000:80
+    networks:
+      - dem
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/tasks-api-py-fastapi-postgresql
+    depends_on:
+      - postgres
+    ports:
+      - 5000:80
+    networks:
+      - dem
