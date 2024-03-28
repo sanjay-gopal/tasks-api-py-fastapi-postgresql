@@ -39,6 +39,6 @@ services:
     depends_on:
       - postgres
     ports:
-      - 5000:80
+      - 8000:15400
     networks:
       - dem
